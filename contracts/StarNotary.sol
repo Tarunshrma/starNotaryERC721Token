@@ -61,7 +61,7 @@ contract StarNotary is ERC721 {
         address ownerAddress = ownerOf(_tokenId);
 
         //Transfer the ownership
-        transferFrom(ownerAddress, msg.sender, _tokenId);
+        _transfer(ownerAddress, msg.sender, _tokenId);
 
         //Pay the price to owner
         address payable ownerAddressPayable = _make_payable(ownerAddress);
