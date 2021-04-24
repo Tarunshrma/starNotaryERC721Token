@@ -20,7 +20,7 @@ contract StarNotary is ERC721 {
     function createStar(uint256 _tokenId, string memory _starName) public {
         require(
             _tokenId > 0 && bytes(_starName).length > 0,
-            "Provider valid information to add the star"
+            "Provide valid information to add the star"
         );
         Star memory newStar = Star(_starName);
         starToTokenIdMapping[_tokenId] = newStar;
