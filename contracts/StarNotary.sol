@@ -14,6 +14,7 @@ contract StarNotary is ERC721 {
     //Mapping to store stars up for sale with associated price
     mapping(uint256 => uint256) public starToPriceMapping;
 
+    //Task1: Added NFT Token & Symbol in constructor.
     constructor() ERC721("MyStars", "TS") {}
 
     //This function will create a new star and assign the ownership to caller using mint
@@ -71,5 +72,52 @@ contract StarNotary is ERC721 {
         if (amountPaying > starPrice) {
             _make_payable(msg.sender).transfer(amountPaying - starPrice);
         }
+    }
+
+    //Task 1: Find the Star detail from token id
+    function lookUptokenIdToStarInfo(uint256 _tokenId)
+        public
+        view
+        returns (string memory)
+    {
+        Star memory star = starToTokenIdMapping[_tokenId];
+        string memory starName = star.name;
+
+        require(
+            bytes(starName).length > 0,
+            "Star you are looking for does not exist."
+        );
+
+        return starName;
+    }
+
+    //Task1: Exchnage the starts between two users...
+    function exchangeStars(uint256 _tokenId1, uint256 _tokenId2) public {
+        address myAddress = msg.sender;
+        address token1Owner = ownerOf(_tokenId1);
+        address token2Owner = ownerOf(_tokenId2);
+
+        require(
+            token1Owner == myAddress,
+            "You can not exchange the star You don't own"
+        );
+        
+        //Give my token to owner of token 2 and takes his token
+        _transfer(myAddress, token2Owner, _tokenId1);
+        _transfer(token2Owner,myAddress,_tokenId2);
+    }
+
+//Task1: Transfer a star to specified address
+    function transferStar(address _transferToAddress, uint256 _tokenId) public {
+        address myAddress = msg.sender;
+        address tokenOwner = ownerOf(_tokenId);
+
+        require(
+            tokenOwner == myAddress,
+            "You can not transfer the star You don't own"
+        );
+        
+        //Give my token to owner of token 2 and takes his token
+        _transfer(myAddress, _transferToAddress, _tokenId);
     }
 }
