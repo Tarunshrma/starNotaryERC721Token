@@ -15,7 +15,9 @@ contract StarNotary is ERC721 {
     mapping(uint256 => uint256) public starToPriceMapping;
 
     //Task1: Added NFT Token & Symbol in constructor.
-    constructor() ERC721("MyStars", "TS") {}
+    constructor() ERC721("MyStars", "TS") {
+        
+    }
 
     //This function will create a new star and assign the ownership to caller using mint
     function createStar(uint256 _tokenId, string memory _starName) public {

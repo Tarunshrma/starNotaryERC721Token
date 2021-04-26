@@ -15,6 +15,15 @@ it('can Create a Star', async () => {
     assert.equal(await instance.starToTokenIdMapping.call(tokenId), 'Awesome Star!')
 });
 
+it('Check For Name and Symbol', async () => {
+    let tokenId = 11;
+    let instance = await StarNotary.deployed();
+    await instance.createStar(tokenId, 'Awesome Star!', { from: accounts[0] })
+
+    assert.equal(await instance.name.call(), 'MyStars')
+    assert.equal(await instance.symbol.call(), 'TS')
+});
+
 it('lets user1 put up their star for sale', async () => {
     let instance = await StarNotary.deployed();
     let user1 = accounts[1];
