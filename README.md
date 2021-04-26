@@ -2,7 +2,13 @@
 This is ERC721 token implementation on Ethereum blockchain. Code is part of Udacity Nano-degree program.
 
 
-#StarNotary Deployed Contract Details
+# ERC-721 Token Name : MyStars
+
+# ERC-721 Token Symbol : TS
+
+# Version of the Truffle and OpenZeppelin used : Truffle v5.3.1 ; OpenZeppelin : 4.0.0
+
+# StarNotary Deployed Contract Details
 
   * Deploying 'StarNotary'
 
